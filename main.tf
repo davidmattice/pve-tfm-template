@@ -1,6 +1,6 @@
 
 locals {
-  storage_volume = var.storage_volume
+  datastore_name = var.datastore_name
 }
 # Get a list of Proxmox Virtual Environment nodes from the server the provider connected to
 data "proxmox_virtual_environment_nodes" "pve" {}
@@ -36,7 +36,7 @@ resource "proxmox_virtual_environment_vm" "template" {
   description = "Managed by Terraform"
 
    disk {
-    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.storage_volume))
+    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
     file_id      = proxmox_virtual_environment_file.image.id
     interface    = "scsi0"
     discard      = "on"
@@ -57,13 +57,13 @@ resource "proxmox_virtual_environment_vm" "template" {
   }
 
   efi_disk {
-    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.storage_volume))
+    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
     file_format  = "raw"
     type         = "4m"
   }
 
   initialization {
-    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.storage_volume))
+    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
     #interface    = "scsi4"
 
     dns {

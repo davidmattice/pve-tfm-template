@@ -28,8 +28,8 @@ variable "distro_url" {
     type        = string
 }
 
-variable "storage_volume" {
-    description = "Storage Volume to put images and teplates"
+variable "datastore_name" {
+    description = "Datastore to put images and teplates on"
     type        = string
     default     = "local-lvm"
 }
