@@ -26,10 +26,10 @@ resource "proxmox_virtual_environment_vm" "template" {
     enabled = true
   }
 
-  bios        = "ovmf"
+  bios        = var.bios_type
 
   cpu {
-    cores = 2
+    cores = 1
     numa  = true
   }
 
@@ -42,6 +42,7 @@ resource "proxmox_virtual_environment_vm" "template" {
     discard      = "on"
     cache        = "writeback"
     ssd          = true
+    size         = var.boot_disk_size
   }
 
   smbios {
