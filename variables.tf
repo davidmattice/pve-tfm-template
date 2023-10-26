@@ -57,7 +57,7 @@ variable "bios_type" {
     type        = string
     default     = "seabios"
     validation {
-      condition = contains("seabios","ovmf", var.bios_type)
+      condition = contains(["seabios","ovmf"], var.bios_type)
       error_message = "Bios typ emust be one of \"seabios\" or \"ovmf\""
     }
 }
