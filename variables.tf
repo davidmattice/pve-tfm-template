@@ -25,6 +25,12 @@ variable "pve_template_id" {
     type        = string
 }
 
+variable "pve_template_version_tag" {
+    description = "This is the version tag to apply to this telplate."
+    type        = string
+    default     = "dev"
+}
+
 variable "distro_url" {
     description = "This is the full path URL to the ISO image to be pulled down.  This must be set and passed in."
     type        = string
