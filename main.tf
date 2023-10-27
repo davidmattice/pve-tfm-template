@@ -93,7 +93,7 @@ resource "proxmox_virtual_environment_vm" "template" {
     queues = 2
   }
 
-  node_name = loca.pve_host_name
+  node_name = local.pve_host_name
 
   # Linux Kernel 2.6 or higher
   operating_system {
