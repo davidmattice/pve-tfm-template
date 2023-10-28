@@ -24,6 +24,7 @@ resource "proxmox_virtual_environment_file" "image" {
 
   source_file {
     path = var.distro_url
+    file_name = format("%s-%s-%s-%s", var.distro, var.distro_name, var.pve_template_version_tag, var.pve_template_id)
   }
 }
 
