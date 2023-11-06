@@ -1,16 +1,6 @@
 ##############################
 # Proxmox Virtual Environment 
 ##############################
-variable "pve_endpoint" {
-    description = "Endpoint URL for PVE environment.  This must be set and passed in."
-    type        = string
-}
-
-variable "pve_user" {
-    description = "User name for Terraform Updates.  This must be set and passed in.  Also, set the PROXMOX_VE_PASSWORD environment variable"
-    type        = string
-}
-
 variable "pve_host_name" {
     description = "PVE hostname to create this template on.  Defaults to first host in the Cluster."
     type        = string
