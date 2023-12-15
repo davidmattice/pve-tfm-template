@@ -42,7 +42,7 @@ resource "proxmox_virtual_environment_vm" "template" {
 
   description = format("%s-%s-%s", var.distro, var.distro_name, var.pve_template_version_tag)
 
-   disk {
+  disk {
     datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
     file_id      = proxmox_virtual_environment_file.image.id
     interface    = "scsi0"
@@ -62,20 +62,20 @@ resource "proxmox_virtual_environment_vm" "template" {
     }
   }
 
-  initialization {
-    datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
-    #interface    = "scsi4"
+  #initialization {
+  #  datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
+  #  #interface    = "scsi4"
 
-    dns {
-      server = "1.1.1.1"
-    }
+  #  dns {
+  #    server = "1.1.1.1"
+  #  }
 
-    ip_config {
-      ipv4 {
-        address = "dhcp"
-      }
-    }
-  }   
+  #  ip_config {
+  #    ipv4 {
+  #      address = "dhcp"
+  #    }
+  #  }
+  #}   
 
   # Machine type can be one of "q35" (2009) or "i440fx" (1996)
   machine = "q35"
@@ -89,10 +89,10 @@ resource "proxmox_virtual_environment_vm" "template" {
   name    = format("%s-%s", var.distro, var.distro_name)
 
   # Setup one base network device
-  network_device {
-    mtu    = 1450
-    queues = 2
-  }
+  #network_device {
+  #  mtu    = 1450
+  #  queues = 2
+  #}
 
   node_name = local.pve_host_name
 
