@@ -1,19 +1,19 @@
 
 locals {
   datastore_name = var.datastore_name
-  pve_host_name = var.pve_node_name == "" ? data.proxmox_virtual_environment_nodes.pve.names[0] : var.pve_node_name  
+  pve_node_name = var.pve_node_name == "" ? data.proxmox_virtual_environment_nodes.pve.names[0] : var.pve_node_name  
 }
 # Get a list of Proxmox Virtual Environment nodes from the server the provider connected to
 data "proxmox_virtual_environment_nodes" "pve" {}
 
 # Pull the list of datastores from the first node in the list of Proxmox Virtual Environment nodes (they should all be the same)
 data "proxmox_virtual_environment_datastores" "pve" {
-  node_name = local.pve_host_name
+  node_name = local.pve_node_name
 }
 
 # Get the DNS configuration for the node the will go pn
 data "proxmox_virtual_environment_dns" "pve_node" {
-  node_name = local.pve_host_name
+  node_name = local.pve_node_name
 }
 
 # Pull down the ISO for this image
@@ -94,7 +94,7 @@ resource "proxmox_virtual_environment_vm" "template" {
     queues = 2
   }
 
-  node_name = local.pve_host_name
+  node_name = local.pve_node_name
 
   # Linux Kernel 2.6 or higher
   operating_system {
