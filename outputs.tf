@@ -7,7 +7,7 @@ output "nodes" {
 }
 
 output "datastores" {
-  value = data.proxmox_virtual_environment_datastores
+  value = data.proxmox_virtual_environment_datastores.pve
 }
 
 output "dns" {
