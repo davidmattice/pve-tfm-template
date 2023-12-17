@@ -1,8 +1,14 @@
-
+##############################
+# Local Variables
+##############################
 locals {
   datastore_name = var.datastore_name
   pve_node_name = var.pve_node_name == "" ? data.proxmox_virtual_environment_nodes.pve.names[0] : var.pve_node_name  
 }
+
+##############################
+# Data Lookups
+##############################
 # Get a list of Proxmox Virtual Environment nodes from the server the provider connected to
 data "proxmox_virtual_environment_nodes" "pve" {}
 
@@ -11,11 +17,14 @@ data "proxmox_virtual_environment_datastores" "pve" {
   node_name = local.pve_node_name
 }
 
-# Get the DNS configuration for the node the will go pn
-data "proxmox_virtual_environment_dns" "pve_node" {
+# Get the DNS configuration for the node the will go on
+data "proxmox_virtual_environment_dns" "pve" {
   node_name = local.pve_node_name
 }
 
+##############################
+# Resources
+##############################
 # Pull down the ISO for this image
 resource "proxmox_virtual_environment_file" "image" {
   content_type = "iso"
@@ -28,6 +37,7 @@ resource "proxmox_virtual_environment_file" "image" {
   }
 }
 
+# Minimal reasonable configuration for the template
 resource "proxmox_virtual_environment_vm" "template" {
   agent {
     enabled = true
@@ -61,21 +71,6 @@ resource "proxmox_virtual_environment_vm" "template" {
       type         = "4m"
     }
   }
-
-  #initialization {
-  #  datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
-  #  #interface    = "scsi4"
-
-  #  dns {
-  #    server = "1.1.1.1"
-  #  }
-
-  #  ip_config {
-  #    ipv4 {
-  #      address = "dhcp"
-  #    }
-  #  }
-  #}   
 
   # Machine type can be one of "q35" (2009) or "i440fx" (1996)
   machine = "q35"

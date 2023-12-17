@@ -2,7 +2,7 @@
 # Proxmox Virtual Environment 
 ##############################
 variable "pve_node_name" {
-    description = "PVE hostname to create this template on.  Defaults to first host in the Cluster defined by the PROXMOX Endpoint."
+    description = "PVE hostname to create this template on.  Defaults to first node in the Cluster defined by the PROXMOX Endpoint."
     type        = string
     default     = ""
 }
@@ -22,22 +22,22 @@ variable "pve_template_version" {
 }
 
 variable "distro_url" {
-    description = "This is the full path URL to the ISO image to be pulled down.  This must be set and passed in."
+    description = "This is the full path URL to the ISO image to be pulled down.  This is a required value."
     type        = string
 }
 
 variable "distro" {
-    description = "This is the distro name that will be used in the template name.  This must be set and passed in."
+    description = "This is the distro name that will be used in the template name.  This is a required value."
     type        = string
 }
 
 variable "distro_name" {
-    description = "This is the name of the version to use from this distro.  This must be set and passed in."
+    description = "This is the name of the version to use from this distro.  This is a required value."
     type        = string
 }
 
 variable "datastore_name" {
-    description = "Datastore to put images and teplates on"
+    description = "Datastore to put VM nd Template images and teplates on."
     type        = string
     default     = "local-lvm"
 }

@@ -1,5 +1,5 @@
 output "template" {
-  description = "Full configuration of the crated template."
+  description = "Full configuration of the created template."
   value       = proxmox_virtual_environment_vm.template
 }
 
@@ -15,7 +15,7 @@ output "datastores" {
 
 output "dns" {
   description = "DNS configuration of the PVE node."
-  value       = data.proxmox_virtual_environment_dns.pve_node
+  value       = data.proxmox_virtual_environment_dns.pve
 }
 
 output "image" {
