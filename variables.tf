@@ -1,8 +1,8 @@
 ##############################
 # Proxmox Virtual Environment 
 ##############################
-variable "pve_host_name" {
-    description = "PVE hostname to create this template on.  Defaults to first host in the Cluster."
+variable "pve_node_name" {
+    description = "PVE hostname to create this template on.  Defaults to first host in the Cluster defined by the PROXMOX Endpoint."
     type        = string
     default     = ""
 }

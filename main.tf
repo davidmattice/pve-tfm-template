@@ -1,14 +1,14 @@
 
 locals {
   datastore_name = var.datastore_name
-  pve_host_name = var.pve_host_name == "" ? data.proxmox_virtual_environment_nodes.pve.names[0] : var.pve_host_name  
+  pve_host_name = var.pve_node_name == "" ? data.proxmox_virtual_environment_nodes.pve.names[0] : var.pve_node_name  
 }
 # Get a list of Proxmox Virtual Environment nodes from the server the provider connected to
 data "proxmox_virtual_environment_nodes" "pve" {}
 
 # Pull the list of datastores from the first node in the list of Proxmox Virtual Environment nodes (they should all be the same)
 data "proxmox_virtual_environment_datastores" "pve" {
-  node_name = data.proxmox_virtual_environment_nodes.pve.names[0]
+  node_name = local.pve_host_name
 }
 
 # Get the DNS configuration for the node the will go pn
