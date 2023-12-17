@@ -24,7 +24,7 @@ resource "proxmox_virtual_environment_file" "image" {
 
   source_file {
     path = var.distro_url
-    file_name = format("%s-%s-%s-%s.img", var.distro, var.distro_name, var.pve_template_version_tag, var.pve_template_id)
+    file_name = format("%s-%s-%s-%s.img", var.distro, var.distro_name, var.pve_template_version, var.pve_template_id)
   }
 }
 
@@ -40,7 +40,7 @@ resource "proxmox_virtual_environment_vm" "template" {
     numa  = true
   }
 
-  description = format("%s-%s-%s", var.distro, var.distro_name, var.pve_template_version_tag)
+  description = format("%s-%s-%s", var.distro, var.distro_name, var.pve_template_version)
 
   disk {
     datastore_id = element(data.proxmox_virtual_environment_datastores.pve.datastore_ids, index(data.proxmox_virtual_environment_datastores.pve.datastore_ids, local.datastore_name))
