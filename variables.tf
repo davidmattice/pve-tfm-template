@@ -15,7 +15,7 @@ variable "pve_template_id" {
     type        = string
 }
 
-variable "pve_template_version_tag" {
+variable "pve_template_version" {
     description = "This is the version tag to apply to this telplate."
     type        = string
     default     = "not-set"

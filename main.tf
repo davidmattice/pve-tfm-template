@@ -112,11 +112,11 @@ resource "proxmox_virtual_environment_vm" "template" {
   smbios {
     manufacturer = "Terraform"
     product      = "Terraform Provider Proxmox"
-    version      = var.pve_template_version_tag
+    version      = var.pve_template_version
   }
 
   # Combined list of tags
-  tags = concat(["terraform", "template", var.distro, var.distro_name, var.pve_template_version_tag, var.pve_template_id], var.additional_tags)
+  tags = concat(["terraform", "template", var.distro, var.distro_name, var.pve_template_version, var.pve_template_id], var.additional_tags)
 
   # Ensure this is a template in Proxmox
   template = true
