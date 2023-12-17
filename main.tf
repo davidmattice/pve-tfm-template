@@ -89,10 +89,10 @@ resource "proxmox_virtual_environment_vm" "template" {
   name    = format("%s-%s", var.distro, var.distro_name)
 
   # Setup one base network device
-  #network_device {
-  #  mtu    = 1450
-  #  queues = 2
-  #}
+  network_device {
+    mtu    = 1450
+    queues = 2
+  }
 
   node_name = local.pve_host_name
 
