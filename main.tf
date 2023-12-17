@@ -116,7 +116,7 @@ resource "proxmox_virtual_environment_vm" "template" {
   }
 
   # Combined list of tags
-  tags = concat(["terraform", var.distro, var.distro_name, var.pve_template_version_tag, var.pve_template_id], var.additional_tags)
+  tags = concat(["terraform", "template", var.distro, var.distro_name, var.pve_template_version_tag, var.pve_template_id], var.additional_tags)
 
   # Ensure this is a template in Proxmox
   template = true

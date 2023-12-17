@@ -18,7 +18,7 @@ variable "pve_template_id" {
 variable "pve_template_version_tag" {
     description = "This is the version tag to apply to this telplate."
     type        = string
-    default     = "dev"
+    default     = "not-set"
 }
 
 variable "distro_url" {
